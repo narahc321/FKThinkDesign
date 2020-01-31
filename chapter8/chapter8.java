@@ -6,7 +6,7 @@ java -cp  ClassFiles/ PracticalObjectOrientedDesign.chapter8
 
 package PracticalObjectOrientedDesign;
 
-public class Bicycle {
+class Bicycle {
     
     int size;
     int tapecolor;
@@ -52,7 +52,7 @@ class Trip {
 }
 
 
-public interface PrepareInterface {
+interface PrepareInterface {
 
     public void prepareTrip(Trip trip);
 
@@ -127,7 +127,7 @@ class RoadBikeParts extends Parts{
 }
 
 
-public class MountainBikeParts extends Parts {
+class MountainBikeParts extends Parts {
 
 }
 
