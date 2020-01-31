@@ -13,3 +13,4 @@ Added Chapter5
 
 Added Chapter6
 
+Added Chapter7
