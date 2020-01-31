@@ -1,52 +1,82 @@
 
 /*
-javac ReverseDependency.java -d ClassFiles
-java -cp  ClassFiles/ PracticalObjectOrientedDesign.ReverseDependency
+javac chapter5.java -d ClassFiles
+java -cp  ClassFiles/ PracticalObjectOrientedDesign.chapter5
 */
 package PracticalObjectOrientedDesign;
 
+public interface PrepareInterface{
 
+    public void prepareTrip(Trip trip);
 
-class Wheel{
-    int rim;
-    double tire;
-    Gear gear;
-
-    Wheel(int rim, double tire, int chainring, int cog){
-        this.rim = rim;
-        this.tire = tire;
-        this.gear = new Gear(chainring, int cog)
-    }
-
-    double diameter(){
-        return rim + (tire * 2);
-    }
-
-    public double gear_inches(int diameter){
-        return gear.gear_inches(diameter());
-    }
 }
 
-class Gear{
-    int chainring, cog;
+class Driver implements PrepareInterface{
 
-    Gear(int chainring, int cog){
-        this.chainring = chainring;
-        this.cog = cog;
+    public void prepareTrip(Trip trip){
+
+        gasUp(trip.vehicle);
+        fillWaterTank(trip.vehicle);
+    
     }
 
-    public double ratio(){
-        return chainring / (double) cog;
+    void gasUp(int vehicle){
     }
 
-    public double gear_inches(int diameter){
-        return ratio() * diameter();
+    void fillWaterTank(int vehicle){
     }
+
 }
 
-public class ReverseDependency{
+class Mechanic implements PrepareInterface{
 
-   public static void main(String[] args){
-        System.out.println((new Wheel(26, 1.5, 52, 11, wheel)).gear_inches());
+    Bicycle [] prepareBicycles(Bicycle[] bicycles){
+
+        return bicycles;
+    
     }
+    
+    public void prepareTrip(Trip trip){
+    
+        prepareBicycles(trip.bicycles);
+    
+    }
+    
+    Bicycle prepareBicycle(){
+
+        return new Bicycle();
+
+    }
+
 }
+
+class Trip{
+    Bicycle[]  bicycles;
+    int [] cutomers;
+    int vehicle;
+
+    void prepare(PrepareInterface preparers){
+        preparers.prepareTrip(this);
+    }
+
+}
+
+class TripCoordinator implements PrepareInterface{
+
+    void buyFood(int[] customers){
+
+    }
+
+    public void prepareTrip(Trip trip){
+
+        buyFood(trip.cutomers);
+
+    }
+
+}
+
+
+class Bicycle{
+
+}
+
